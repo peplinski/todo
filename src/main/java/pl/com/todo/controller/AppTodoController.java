@@ -20,8 +20,8 @@ public class AppTodoController {
     private AppTodoService appTodoService;
 
     @PostMapping("/registerTask")
-    public void registerTodoTask(@RequestBody RegisterTodoTaskDto RegisterTodoTaskDto) {
-        appTodoService.registerTodoTask(RegisterTodoTaskDto);
+    public void registerTodoTask(@RequestBody RegisterTodoTaskDto registerTodoTaskDto) {
+        appTodoService.registerTodoTask(registerTodoTaskDto);
     }
 
     @PostMapping("/editTask/{id}")

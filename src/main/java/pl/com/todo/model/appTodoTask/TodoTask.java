@@ -21,7 +21,9 @@ public class TodoTask {
     private LocalDateTime addTime;
     private boolean done;
 
-    public TodoTask(String register_title, String register_description) {
+    public TodoTask(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     @ManyToOne
