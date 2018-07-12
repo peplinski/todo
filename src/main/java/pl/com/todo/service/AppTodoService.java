@@ -51,17 +51,14 @@ public class AppTodoService {
         return taskList.stream().map(task -> AppTodoTaskDto.createTask(task)).collect(Collectors.toList());
     }
 
-    public Optional<TodoTask> deleteTask(Long id, DeleteTodoTaskDto dto) {
+    public Optional<TodoTask> deleteTask(Long id) {
         Optional<TodoTask> searchedTask = appTodoTaskRepository.findById(id);
         if (id != null) {
             TodoTask task = searchedTask.get();
             if (searchedTask.isPresent()) {
-                if (task.getTitle().equals(dto.getTitle()) &&
-                        task.getDescription().equals(dto.getDescription())) {
-                }
+                appTodoTaskRepository.delete(task);
+                return Optional.of(task);
             }
-             appTodoTaskRepository.delete(task);
-            return Optional.of(task);
         }
         return Optional.empty();
     }

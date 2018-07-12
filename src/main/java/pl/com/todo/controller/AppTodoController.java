@@ -16,8 +16,13 @@ import java.util.Optional;
 @RestController
 public class AppTodoController {
 
-    @Autowired
+
     private AppTodoService appTodoService;
+
+    @Autowired
+    public AppTodoController(AppTodoService appTodoService) {
+        this.appTodoService = appTodoService;
+    }
 
     @PostMapping("/registerTask")
     public void registerTodoTask(@RequestBody RegisterTodoTaskDto registerTodoTaskDto) {
@@ -39,9 +44,9 @@ public class AppTodoController {
         return ResponseEntity.ok(appTodoService.getTodoTask());
     }
 
-    @GetMapping("/deleteTask/{id}")
-    public ResponseEntity<TodoTask> deleteTask(@PathVariable(name = "id") Long id,@RequestBody DeleteTodoTaskDto dto) {
-        Optional<TodoTask> deleteTodoTask = appTodoService.deleteTask(id, dto);
+    @PostMapping("/deleteTask/{id}")
+    public ResponseEntity<TodoTask> deleteTask(@PathVariable(name = "id") Long id) {
+        Optional<TodoTask> deleteTodoTask = appTodoService.deleteTask(id);
 
         if (deleteTodoTask.isPresent()) {
             return ResponseEntity.ok(deleteTodoTask.get());
