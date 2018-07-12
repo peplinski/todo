@@ -3,10 +3,7 @@ package pl.com.todo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.com.todo.model.appUser.AppUser;
-import pl.com.todo.model.appUser.dto.AppUserDto;
-import pl.com.todo.model.appUser.dto.DeleteUserDto;
-import pl.com.todo.model.appUser.dto.EditUserDto;
-import pl.com.todo.model.appUser.dto.RegisterUserDto;
+import pl.com.todo.model.appUser.dto.*;
 import pl.com.todo.repozytory.AppUserRepository;
 
 import java.util.List;
@@ -85,4 +82,10 @@ public class AppUserService {
         }
         return Optional.empty();
     }
+
+//    public Optional<AppUser> addTaskToUser(Long id, AddUserTaskDto dto) {
+//        Optional<AppUser> user = appUserRepository.findById(id);
+//
+//
+//    }
 }

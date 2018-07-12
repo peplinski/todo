@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.com.todo.model.appUser.AppUser;
-import pl.com.todo.model.appUser.dto.AppUserDto;
-import pl.com.todo.model.appUser.dto.DeleteUserDto;
-import pl.com.todo.model.appUser.dto.EditUserDto;
-import pl.com.todo.model.appUser.dto.RegisterUserDto;
+import pl.com.todo.model.appUser.dto.*;
 import pl.com.todo.service.AppUserService;
 
 import java.util.List;
@@ -47,4 +44,9 @@ public class AppUserController {
         }
         return ResponseEntity.badRequest().build();
     }
+
+//    @PostMapping("")
+//    public ResponseEntity<AppUser> addToUser(@RequestBody AddUserTaskDto dto){
+//        appUserService.addTaskToUser(dto);
+//    }
 }

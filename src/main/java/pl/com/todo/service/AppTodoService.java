@@ -9,6 +9,7 @@ import pl.com.todo.model.appTodoTask.dto.AppTodoTaskDto;
 import pl.com.todo.model.appTodoTask.dto.RegisterTodoTaskDto;
 import pl.com.todo.repozytory.AppTodoTaskRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -51,12 +52,35 @@ public class AppTodoService {
         return taskList.stream().map(task -> AppTodoTaskDto.createTask(task)).collect(Collectors.toList());
     }
 
+    public List<AppTodoTaskDto> GetDailyTask(LocalDate time) {
+        List<TodoTask> taskList = appTodoTaskRepository.findAll();
+        return taskList.stream().filter(task ->
+        {
+            return task.getTime().toLocalDate().equals(time);
+        }).map(task -> AppTodoTaskDto.createTask(task)).collect(Collectors.toList());
+    }
+
     public Optional<TodoTask> deleteTask(Long id) {
         Optional<TodoTask> searchedTask = appTodoTaskRepository.findById(id);
         if (id != null) {
             TodoTask task = searchedTask.get();
             if (searchedTask.isPresent()) {
                 appTodoTaskRepository.delete(task);
+                return Optional.of(task);
+            }
+        }
+        return Optional.empty();
+    }
+
+    //oznaczone że zrobione zadanie
+    public Optional<TodoTask> isDone(Long id, Boolean status) {
+        Optional<TodoTask> searchedTask = appTodoTaskRepository.findById(id);
+        if (id != null) {
+            if (searchedTask.isPresent()) {
+                TodoTask task = searchedTask.get();
+                task.setDone(status);
+
+                appTodoTaskRepository.save(task);
                 return Optional.of(task);
             }
         }
