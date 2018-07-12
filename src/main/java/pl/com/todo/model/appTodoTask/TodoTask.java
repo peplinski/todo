@@ -26,6 +26,9 @@ public class TodoTask {
         this.description = description;
     }
 
+    public TodoTask() {
+    }
+
     @ManyToOne
     @JoinColumn(name = "appUser_id")
     private AppUser appUser;

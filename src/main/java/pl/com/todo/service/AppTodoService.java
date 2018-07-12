@@ -54,15 +54,17 @@ public class AppTodoService {
     public Optional<TodoTask> deleteTask(Long id, DeleteTodoTaskDto dto) {
         Optional<TodoTask> searchedTask = appTodoTaskRepository.findById(id);
         if (id != null) {
+            TodoTask task = searchedTask.get();
             if (searchedTask.isPresent()) {
-                TodoTask task = searchedTask.get();
-
                 if (task.getTitle().equals(dto.getTitle()) &&
                         task.getDescription().equals(dto.getDescription())) {
-                    appTodoTaskRepository.delete(task);
                 }
             }
+             appTodoTaskRepository.delete(task);
+            return Optional.of(task);
         }
         return Optional.empty();
     }
+
+
 }

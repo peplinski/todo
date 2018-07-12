@@ -39,9 +39,9 @@ public class AppTodoController {
         return ResponseEntity.ok(appTodoService.getTodoTask());
     }
 
-    @GetMapping("/deleteTask")
-    public ResponseEntity<TodoTask> deleteTask(@RequestBody DeleteTodoTaskDto dto) {
-        Optional<TodoTask> deleteTodoTask = appTodoService.deleteTask(dto.getId(), dto);
+    @GetMapping("/deleteTask/{id}")
+    public ResponseEntity<TodoTask> deleteTask(@PathVariable(name = "id") Long id,@RequestBody DeleteTodoTaskDto dto) {
+        Optional<TodoTask> deleteTodoTask = appTodoService.deleteTask(id, dto);
 
         if (deleteTodoTask.isPresent()) {
             return ResponseEntity.ok(deleteTodoTask.get());
