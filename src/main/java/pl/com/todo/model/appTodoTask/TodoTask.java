@@ -18,7 +18,7 @@ public class TodoTask {
 
     private String title;
     private String description;
-    private LocalDateTime addTime;
+    private LocalDateTime time=LocalDateTime.now();
     private boolean done;
 
     public TodoTask(String title, String description) {

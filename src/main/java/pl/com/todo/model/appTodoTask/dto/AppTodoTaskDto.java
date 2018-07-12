@@ -24,7 +24,7 @@ public class AppTodoTaskDto {
         return new AppTodoTaskDto(task.getId(),
                 task.getTitle(),
                 task.getDescription(),
-                task.getAddTime(),
+                task.getTime(),
                 task.isDone());
     }
 
