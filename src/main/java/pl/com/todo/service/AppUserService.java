@@ -55,10 +55,10 @@ public class AppUserService {
                 user.setSurname(dto.getEdited_surname());
             }
 
+            //zwracam zmodyfikowany wpis
             user = appUserRepository.save(user);
             return Optional.of(user);
         }
-        //zwracam zmodyfikowany wpis
         return Optional.empty();
     }
 
