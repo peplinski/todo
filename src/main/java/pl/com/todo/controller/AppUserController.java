@@ -3,11 +3,11 @@ package pl.com.todo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.com.todo.model.AppUser;
-import pl.com.todo.model.dto.AppUserDto;
-import pl.com.todo.model.dto.DeleteUserDto;
-import pl.com.todo.model.dto.EditUserDto;
-import pl.com.todo.model.dto.RegisterUserDto;
+import pl.com.todo.model.appUser.AppUser;
+import pl.com.todo.model.appUser.dto.AppUserDto;
+import pl.com.todo.model.appUser.dto.DeleteUserDto;
+import pl.com.todo.model.appUser.dto.EditUserDto;
+import pl.com.todo.model.appUser.dto.RegisterUserDto;
 import pl.com.todo.service.AppUserService;
 
 import java.util.List;

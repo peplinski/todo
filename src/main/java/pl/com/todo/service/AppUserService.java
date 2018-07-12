@@ -2,12 +2,12 @@ package pl.com.todo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.com.todo.model.AppUser;
-import pl.com.todo.model.dto.AppUserDto;
-import pl.com.todo.model.dto.DeleteUserDto;
-import pl.com.todo.model.dto.EditUserDto;
-import pl.com.todo.model.dto.RegisterUserDto;
-import pl.com.todo.repozytory.AppUserRepozytory;
+import pl.com.todo.model.appUser.AppUser;
+import pl.com.todo.model.appUser.dto.AppUserDto;
+import pl.com.todo.model.appUser.dto.DeleteUserDto;
+import pl.com.todo.model.appUser.dto.EditUserDto;
+import pl.com.todo.model.appUser.dto.RegisterUserDto;
+import pl.com.todo.repozytory.AppUserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class AppUserService {
 
 
     @Autowired
-    private AppUserRepozytory appUserRepozytory;
+    private AppUserRepository appUserRepository;
 
     /**
      * Metoda rejestracji użytkownika - przyjmuje dto, a wewnątrz zamienia go na obiekt
@@ -33,12 +33,12 @@ public class AppUserService {
                 registerUserDto.getRegister_password());
 
         // wykorzystujemy repository żeby zapisać usera w bazie
-        appUserRepozytory.save(createdUser);
+        appUserRepository.save(createdUser);
     }
 
 
     public Optional<AppUser> editUser(Long id, EditUserDto dto) {
-        Optional<AppUser> searchedUser = appUserRepozytory.findById(id);
+        Optional<AppUser> searchedUser = appUserRepository.findById(id);
         if (searchedUser.isPresent()) {
             AppUser user = searchedUser.get();
 
@@ -55,7 +55,7 @@ public class AppUserService {
                 user.setSurname(dto.getEdited_surname());
             }
 
-            user = appUserRepozytory.save(user);
+            user = appUserRepository.save(user);
             return Optional.of(user);
         }
         //zwracam zmodyfikowany wpis
@@ -63,7 +63,7 @@ public class AppUserService {
     }
 
     public List<AppUserDto> getUserList() {
-        List<AppUser> list = appUserRepozytory.findAll();
+        List<AppUser> list = appUserRepository.findAll();
         return list.stream()
                 .map(user -> AppUserDto.createDto(user))
                 .collect(Collectors.toList());
@@ -71,21 +71,18 @@ public class AppUserService {
 
 
     public Optional<AppUser> deleteUser(Long id, DeleteUserDto dto) {
-        Optional<AppUser> searchedUser = appUserRepozytory.findById(id);
-if (id != null){
-    if (searchedUser.isPresent()){
-        AppUser user = searchedUser.get();
+        Optional<AppUser> searchedUser = appUserRepository.findById(id);
+        if (id != null) {
+            if (searchedUser.isPresent()) {
+                AppUser user = searchedUser.get();
 
-        if(user.getEmail().equals(dto.getEmail()) &&
-                user.getPassword().equals(dto.getPassword())){
-            appUserRepozytory.delete(user);
-            return Optional.of(user);
+                if (user.getEmail().equals(dto.getEmail()) &&
+                        user.getPassword().equals(dto.getPassword())) {
+                    appUserRepository.delete(user);
+                    return Optional.of(user);
+                }
+            }
         }
-    }
-
-}
         return Optional.empty();
     }
-
-
 }

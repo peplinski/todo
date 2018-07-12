@@ -1,4 +1,4 @@
-package pl.com.todo.model.dto;
+package pl.com.todo.model.appUser.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

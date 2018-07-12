@@ -1,18 +1,14 @@
-package pl.com.todo.model;
+package pl.com.todo.model.appTodoTask;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import pl.com.todo.model.appUser.AppUser;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class TodoTask {
 
@@ -20,9 +16,16 @@ public class TodoTask {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private  String title;
+    private String title;
     private String description;
     private LocalDateTime addTime;
     private boolean done;
+
+    public TodoTask(String register_title, String register_description) {
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    private AppUser appUser;
 
 }

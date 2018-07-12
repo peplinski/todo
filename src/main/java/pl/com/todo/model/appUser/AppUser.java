@@ -1,7 +1,8 @@
-package pl.com.todo.model;
+package pl.com.todo.model.appUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import pl.com.todo.model.appTodoTask.TodoTask;
 
 import javax.persistence.*;
 import java.util.List;

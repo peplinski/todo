@@ -1,9 +1,9 @@
-package pl.com.todo.model.dto;
+package pl.com.todo.model.appUser.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.com.todo.model.AppUser;
+import pl.com.todo.model.appUser.AppUser;
 
 @Data
 @NoArgsConstructor

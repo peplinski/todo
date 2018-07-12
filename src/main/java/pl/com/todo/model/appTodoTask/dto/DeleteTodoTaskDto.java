@@ -1,18 +1,14 @@
-package pl.com.todo.model.dto;
+package pl.com.todo.model.appTodoTask.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteUserDto {
+public class DeleteTodoTaskDto {
     private Long id;
-    private String email;
-    private String password;
-
-
+    private String title;
+    private String description;
 }
