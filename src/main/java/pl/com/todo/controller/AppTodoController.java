@@ -19,12 +19,12 @@ public class AppTodoController {
     @Autowired
     private AppTodoService appTodoService;
 
-    @PostMapping("/register")
+    @PostMapping("/registerTask")
     public void registerTodoTask(@RequestBody RegisterTodoTaskDto RegisterTodoTaskDto) {
         appTodoService.registerTodoTask(RegisterTodoTaskDto);
     }
 
-    @PostMapping("/editTask")
+    @PostMapping("/editTask/{id}")
     public ResponseEntity<TodoTask> editTask(@PathVariable(name = "id") Long id, @RequestBody EditTodoTaskDto dto) {
         Optional<TodoTask> editedTodoTask = appTodoService.editTask(id, dto);
 
